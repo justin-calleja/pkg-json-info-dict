@@ -1,6 +1,6 @@
 {
   "name": "pkg-json-info-dict",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Given an array of filesystem paths, gives back a data structure describing the npm project(s) in each path",
   "main": "lib/index.js",
   "scripts": {
