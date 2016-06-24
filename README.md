@@ -1,8 +1,8 @@
 Given an array of filesystem paths, gives back a data structure describing the npm project(s) in each path.
 
-Install: `npm i pkg-json-dict -S`
+Install: `npm i pkg-json-info-dict -S`
 
-Usage:
+Usage (asynchronously performs all filesystem operations):
 
 ```js
 var pkgJSONInfoDict = require('pkg-json-info-dict').pkgJSONInfoDict;
@@ -10,6 +10,15 @@ var paths = [ '/abs/path/to/file1', '/abs/path/to/file2' ];
 pkgJSONInfoDict(paths, (err, result) => {
  // here result is of type PkgJSONInfoDict
 });
+```
+
+Usage (synchronously performs all filesystem operations):
+
+```js
+var pkgJSONInfoDictSync = require('pkg-json-info-dict').pkgJSONInfoDictSync;
+var paths = [ '/abs/path/to/file1', '/abs/path/to/file2' ];
+var result = pkgJSONInfoDictSync(paths);
+// result is of type PkgJSONInfoDict
 ```
 
 Type [PkgJSONInfoDict](src/index.ts):
