@@ -38,7 +38,7 @@ interface AbsPathDirs {
  * file. The result is an object. This object is keyed with the names of each package.json found.
  * The value for each key is an AbsPathPkgJSON.
  */
-export function pkgJSONInfoDict(paths:string[], pkgJSONInfoDictCb: (err: Error, result?: PkgJSONInfoDict) => any): any {
+export function readPkgJSONInfoDict(paths:string[], pkgJSONInfoDictCb: (err: Error, result?: PkgJSONInfoDict) => any): any {
 
   mapLimit<string, PkgJSONInfoReader[]>(paths, asyncOpsLimit, (path: string, asyncResCb: AsyncResultCallback<PkgJSONInfoReader[]>): void => {
     directoryNamesInPath(path, (err, dirs: string[]) => {
@@ -110,11 +110,19 @@ function pkgJSONInfoArrayToPkgJSONInfoDict(input: PkgJSONInfo[], objToMutate: Pk
   }
 }
 
-export function pkgJSONInfoDictSync(paths:string[]): PkgJSONInfoDict {
-  var absPathsAndDirs: AbsPathDirs[] = paths.map(absPath => ({
-    absPath,
-    dirs: directoryNamesInPathSync(absPath)
-  }));
+export function readPkgJSONInfoDictSync(paths:string[]): PkgJSONInfoDict {
+  var absPathsAndDirs: AbsPathDirs[] = paths.reduce((acc, absPath) => {
+    try {
+      var dirs = directoryNamesInPathSync(absPath);
+      acc.push({
+        absPath,
+        dirs
+      });
+    } catch(e) {
+      if (e.code !== 'ENOENT') throw e;
+    }
+    return acc;
+  }, []);
 
   return absPathsAndDirs.reduce((acc: PkgJSONInfoDict, val: AbsPathDirs) => {
     val.dirs.forEach(dir => {
