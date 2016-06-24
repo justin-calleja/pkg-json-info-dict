@@ -4,6 +4,7 @@
   "description": "Given an array of filesystem paths, gives back a data structure describing the npm project(s) in each path",
   "main": "lib/index.js",
   "scripts": {
+    "installTypes": "typings install",
     "clean": "rm -rf ./lib && mkdir ./lib",
     "build": "npm run clean && tsc -p ./tsconfig.json",
     "prepublish": "npm run test",
@@ -23,7 +24,8 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^2.5.3",
-    "typescript": "^1.8.10"
+    "typescript": "^1.8.10",
+    "typings": "^1.3.0"
   },
   "dependencies": {
     "async": "^2.0.0-rc.6"
