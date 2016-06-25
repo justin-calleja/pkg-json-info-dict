@@ -5,9 +5,9 @@ Install: `npm i pkg-json-info-dict -S`
 Usage (asynchronously performs all filesystem operations):
 
 ```js
-var pkgJSONInfoDict = require('pkg-json-info-dict').pkgJSONInfoDict;
+var readPkgJSONInfoDict = require('pkg-json-info-dict').readPkgJSONInfoDict;
 var paths = [ '/abs/path/to/file1', '/abs/path/to/file2' ];
-pkgJSONInfoDict(paths, (err, result) => {
+readPkgJSONInfoDict(paths, (err, result) => {
  // here result is of type PkgJSONInfoDict
 });
 ```
@@ -15,9 +15,9 @@ pkgJSONInfoDict(paths, (err, result) => {
 Usage (synchronously performs all filesystem operations):
 
 ```js
-var pkgJSONInfoDictSync = require('pkg-json-info-dict').pkgJSONInfoDictSync;
+var readPkgJSONInfoDictSync = require('pkg-json-info-dict').readPkgJSONInfoDictSync;
 var paths = [ '/abs/path/to/file1', '/abs/path/to/file2' ];
-var result = pkgJSONInfoDictSync(paths);
+var result = readPkgJSONInfoDictSync(paths);
 // result is of type PkgJSONInfoDict
 ```
 
