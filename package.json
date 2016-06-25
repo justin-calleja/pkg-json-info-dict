@@ -4,7 +4,7 @@
   "description": "Given an array of filesystem paths, gives back a data structure describing the npm project(s) in each path",
   "main": "lib/index.js",
   "scripts": {
-    "installTypes": "typings install",
+    "postinstall": "typings install",
     "clean": "rm -rf ./lib && mkdir ./lib",
     "build": "npm run clean && tsc -p ./tsconfig.json",
     "prepublish": "npm run test",
