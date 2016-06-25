@@ -6,7 +6,7 @@ var readPkgJSONInfoDictSync = require('../lib').readPkgJSONInfoDictSync;
 var fixturesPath = path.join(__dirname, 'fixtures');
 var paths = [path.join(fixturesPath, 'dir1'), path.join(fixturesPath, 'doesnotexist'), path.join(fixturesPath, 'dir2')];
 
-require('./directoryNamesInPath-test');
+require('./readersTest');
 
 describe('pkg-json-info-dict module', function() {
   describe('readPkgJSONInfoDict function:', function() {

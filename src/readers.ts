@@ -3,11 +3,20 @@ import { join } from 'path';
 import { filterLimit } from 'async';
 import asyncOpsLimit from './asyncOpsLimit';
 
-export function directoryNamesInPathSync(absPath: string): string[] {
-  return fs.readdirSync(absPath).filter((file) => fs.statSync(join(absPath, file)).isDirectory());
+export function readDirectoryNamesInPathSync(absPath: string): string[] {
+  var fileNames = [];
+  try {
+    fileNames = fs.readdirSync(absPath);
+  } catch (e) {
+    if (e.code !== 'ENOENT') throw e;
+  }
+  // if fileNames was read successfully, it contains valid fileNames which exist on the filesystem
+  // if it's empty, no problem
+  var filtered: string[] = fileNames.filter((fileName) => fs.statSync(join(absPath, fileName)).isDirectory());
+  return filtered;
 }
 
-export function directoryNamesInPath(absPath: string, getDirectoriesCb: (err: Error, dirNames?: string[]) => void) {
+export function readDirectoryNamesInPath(absPath: string, getDirectoriesCb: (err: Error, dirNames?: string[]) => void) {
   fs.readdir(absPath, (err, files: string[]) => {
     if (err) {
       if (err.code === 'ENOENT') {

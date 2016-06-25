@@ -26,8 +26,8 @@
   "buildOnSave": false,
   "files": [
     "src/asyncOpsLimit.ts",
-    "src/directoryNamesInPath.ts",
     "src/index.ts",
+    "src/readers.ts",
     "typings/browser.d.ts",
     "typings/globals/async/index.d.ts",
     "typings/globals/node/index.d.ts",

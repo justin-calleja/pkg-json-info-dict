@@ -1,6 +1,6 @@
 import { readFileSync, readFile } from 'fs';
 import { join } from 'path';
-import { directoryNamesInPath, directoryNamesInPathSync } from './directoryNamesInPath';
+import { readDirectoryNamesInPath, readDirectoryNamesInPathSync } from './readers';
 import { mapLimit, parallelLimit } from 'async';
 import asyncOpsLimit from './asyncOpsLimit';
 
@@ -41,7 +41,7 @@ interface AbsPathDirs {
 export function readPkgJSONInfoDict(paths:string[], pkgJSONInfoDictCb: (err: Error, result?: PkgJSONInfoDict) => any): any {
 
   mapLimit<string, PkgJSONInfoReader[]>(paths, asyncOpsLimit, (path: string, asyncResCb: AsyncResultCallback<PkgJSONInfoReader[]>): void => {
-    directoryNamesInPath(path, (err, dirs: string[]) => {
+    readDirectoryNamesInPath(path, (err, dirs: string[]) => {
       if (err) {
         asyncResCb(err, undefined);
         return;
@@ -111,18 +111,10 @@ function pkgJSONInfoArrayToPkgJSONInfoDict(input: PkgJSONInfo[], objToMutate: Pk
 }
 
 export function readPkgJSONInfoDictSync(paths:string[]): PkgJSONInfoDict {
-  var absPathsAndDirs: AbsPathDirs[] = paths.reduce((acc, absPath) => {
-    try {
-      var dirs = directoryNamesInPathSync(absPath);
-      acc.push({
-        absPath,
-        dirs
-      });
-    } catch(e) {
-      if (e.code !== 'ENOENT') throw e;
-    }
-    return acc;
-  }, []);
+  var absPathsAndDirs: AbsPathDirs[] = paths.map(absPath => ({
+    absPath,
+    dirs: readDirectoryNamesInPathSync(absPath)
+  }));
 
   return absPathsAndDirs.reduce((acc: PkgJSONInfoDict, val: AbsPathDirs) => {
     val.dirs.forEach(dir => {
