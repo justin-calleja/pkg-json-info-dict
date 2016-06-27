@@ -28,6 +28,7 @@
     "src/asyncOpsLimit.ts",
     "src/index.ts",
     "src/readers.ts",
+    "src/readPkgJSONInfo.ts",
     "src/readPkgJSONInfoDict.ts",
     "typings/browser.d.ts",
     "typings/globals/async/index.d.ts",

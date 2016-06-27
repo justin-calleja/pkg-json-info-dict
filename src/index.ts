@@ -19,3 +19,4 @@ export interface PkgJSON {
 }
 
 export { readPkgJSONInfoDict, readPkgJSONInfoDictSync } from './readPkgJSONInfoDict';
+export { readPkgJSONInfo, readPkgJSONInfoSync } from './readPkgJSONInfo';
