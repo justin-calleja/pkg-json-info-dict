@@ -16,7 +16,10 @@
   "typings": "./lib/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/justin-calleja/pkg-json-info-dict.git"
+    "url": "https://stash.nemeabank.com/scm/fe-utils/pkg-json-info-dict.git"
+  },
+  "publishConfig": {
+    "registry": "https://nexus.nemeabank.com/repository/npm-local/"
   },
   "keywords": [],
   "author": "Justin Calleja <calleja.justin@gmail.com>",
