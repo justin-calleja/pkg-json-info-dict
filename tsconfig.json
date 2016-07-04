@@ -32,11 +32,9 @@
     "src/readers.ts",
     "src/readPkgJSONInfo.ts",
     "src/readPkgJSONInfoDict.ts",
-    "typings/browser.d.ts",
     "typings/globals/async/index.d.ts",
     "typings/globals/node/index.d.ts",
     "typings/index.d.ts",
-    "typings/main.d.ts",
     "typings/modules/lodash/index.d.ts"
   ],
   "atom": {
