@@ -3,6 +3,8 @@ export interface PkgJSONInfoDict {
   [el: string]: PkgJSONInfo;
 }
 
+export { DependencyType } from './constants';
+
 export interface PkgJSONInfo {
   // the absolute path to the directory holding the package.json file
   absPath: string;
@@ -25,17 +27,8 @@ export interface NameVersionRangeDict {
 export { readPkgJSONInfoDict, readPkgJSONInfoDictSync } from './readPkgJSONInfoDict';
 export { readPkgJSONInfo, readPkgJSONInfoSync } from './readPkgJSONInfo';
 
-import { name, version, versionRange, reduceDependencies } from './pkgJSONOps';
-export var pkgJSONOps = {
-  name,
-  version,
-  versionRange,
-  reduceDependencies
-};
+import * as _pkgJSONOps from './pkgJSONOps';
+export const pkgJSONOps = _pkgJSONOps;
 
-import { DEPENDENCIES, PEER_DEPENDENCIES, DEV_DEPENDENCIES } from './constants';
-export const constants = {
-  DEPENDENCIES,
-  PEER_DEPENDENCIES,
-  DEV_DEPENDENCIES
-};
+import * as _constants from './constants';
+export const constants = _constants;

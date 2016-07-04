@@ -2,5 +2,8 @@
   "globalDependencies": {
     "async": "registry:dt/async#1.4.2+20160602152629",
     "node": "registry:dt/node#6.0.0+20160613154055"
+  },
+  "dependencies": {
+    "lodash": "registry:npm/lodash#4.0.0+20160416211519"
   }
 }
